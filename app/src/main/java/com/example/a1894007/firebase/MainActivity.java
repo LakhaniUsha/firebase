@@ -21,6 +21,7 @@ public class MainActivity extends AppCompatActivity {
     TextView txt_nm;
 
     ArrayList<Github> vals;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -34,7 +35,7 @@ public class MainActivity extends AppCompatActivity {
         DatabaseReference myRef = database.getReference("items");
 
         txt_nm = findViewById(R.id.txt_name);
-
+            vals= new ArrayList<>();
        // myRef.setValue("Hello, World!");
 
 
@@ -53,8 +54,17 @@ public class MainActivity extends AppCompatActivity {
                   //  System.out.println("name" +snap.child("name").getValue().toString());
 
                     Github git = snap.getValue(Github.class);
-                    System.out.println(git.getId()+" "+git.getFull_name()+" "+git.watchers);
 
+                 //   System.out.println(git.getId()+" "+git.getFull_name()+" "+git.watchers);
+
+                    vals.add(git);
+
+                }
+                System.out.println("Arraylist:" +vals.size());
+
+                for(int i=0; i<vals.size();i++)
+                {
+                    System.out.println(vals.get(i).getId()+" "+vals.get(i).getFull_name()+" "+vals.get(i).watchers);
                 }
             }
 
